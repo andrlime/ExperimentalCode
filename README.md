@@ -1,0 +1,2 @@
+# My experiments
+I play around with stuff like everybody does. Currently there is a Java experiment in here, though I'm sure I will add more stuff as time progresses. Expect Angular, Flask, Django, Elixir, Julia, and non-production React code.
