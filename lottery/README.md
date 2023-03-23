@@ -1,0 +1,2 @@
+# Experiment 1 Logs: Code Name Lottery - November 2022
+I bought some scratch cards at 7/11 for $1 each, didn't win on any of them, and then found a cool language, Julia, and decided to remake it as a shell game. It has a lot of hard coded stuff but I really like Julia as a language now.
