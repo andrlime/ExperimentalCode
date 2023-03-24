@@ -18,10 +18,10 @@ struct Team {
     string school2;
 };
 
-/// @brief 
-/// @param in 
-/// @param delimiter 
-/// @return 
+/// @brief Splits a string into an array of strings separated by the delimiter
+/// @param in input string
+/// @param delimiter separation character e.g. " " or ","
+/// @return vector of strings
 vector<string> split(string in, char delimiter) {
 
     vector<string> output;
