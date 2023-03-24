@@ -4,6 +4,7 @@
 #include <map>
 #include <fstream>
 #include <utility>
+#include <cstring>
 
 using namespace std;
 
@@ -251,6 +252,18 @@ void writeFiles(string input_file_name, map<string, string> csv_strings) {
 
 }
 
+/// @brief Self explanatory
+void printHelpMsg() {
+    cout << "------------" << endl;
+    cout << "Usage:" << endl;
+    cout << "pencil (file name) (number of divisions)" << endl;
+    cout << "  file name: name of your csv file" << endl;
+    cout << "  number of divisions: # of divisions inside of this file, defaults to 1" << endl;
+    cout << "Flags:" << endl;
+    cout << "  -H or --h: show help message" << endl;
+    cout << "------------" << endl;
+}
+
 /// @brief main lol
 /// @param argc arg count
 /// @param argv arg values
@@ -258,15 +271,24 @@ void writeFiles(string input_file_name, map<string, string> csv_strings) {
 int main(int argc, char ** argv) {
     
     // Argument 1: file name
-    if ( argc == 1 ) {
+    if ( argc == 1 || ( argc > 1 && ( strcmp(argv[1], "-H") == 0 || strcmp(argv[1], "--h") == 0 || strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--H") == 0 ) ) ) {
 
-        cout << "Enter arguments in the format: pencil (file name)" << endl;
+        printHelpMsg();
         return 1;
 
     }
 
     // Have arguments, so let's parse them
     string input_file = argv[1];
+
+    // Ensure it's a csv file
+    bool valid = input_file.find("csv") != string::npos;
+    if ( !valid ) {
+
+        cout << "ERROR: Not a csv file. Make sure you input a csv file." << endl;
+        return 1;
+
+    }
 
     // Division count
     int division_count = 1;
@@ -282,15 +304,8 @@ int main(int argc, char ** argv) {
 
         }
         
-    }
-
-    // Ensure it's a csv file
-    bool valid = input_file.find("csv") != string::npos;
-    if ( !valid ) {
-
-        cout << "ERROR: Not a csv file. Make sure you input a csv file." << endl;
-        return 1;
-
+    } else {
+        cout << "WARNING: You did not specify a division count. I strongly recommend you do." << endl;
     }
 
     // Presumably a valid file, let's read it maps division -> list of teams

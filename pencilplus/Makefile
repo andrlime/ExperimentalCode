@@ -21,3 +21,6 @@ build:
 	@rm -f ./build.out
 	@g++ -std=$(cppversion) $(buildflags_prod) -I. $(files) -lpthread -o pencil
 	@chmod 755 pencil
+
+install: build # This is written to work on my computer, not a generic computer
+	@mv pencil ~/bin
