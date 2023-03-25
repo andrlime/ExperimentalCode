@@ -282,7 +282,7 @@ int main(int argc, char ** argv) {
     string input_file = argv[1];
 
     // Ensure it's a csv file
-    bool valid = input_file.find("csv") != string::npos;
+    bool valid = input_file.find(".csv") != string::npos;
     if ( !valid ) {
 
         cout << "ERROR: Not a csv file. Make sure you input a csv file." << endl;
