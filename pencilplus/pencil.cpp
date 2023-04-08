@@ -155,9 +155,10 @@ map<string, vector<Team>> readFile(string file_name, int division_count) {
             // Split the string into an array
             vector<string> dataArray = split(buffer, ',');
 
-            // Set current division name
+            // Set current division name, and teamID iff its not blank
             currentDivisionName = dataArray[1];
-            currentTeam.teamId = dataArray[2];
+            if(dataArray[2].length() > 0)
+                currentTeam.teamId = dataArray[2];
 
             // Debater's name
             pair<string, string> name = parseName(dataArray[5], dataArray[6]);
@@ -196,7 +197,7 @@ map<string, vector<Team>> readFile(string file_name, int division_count) {
 /// @return a map of division name to csv strings
 map<string, string> parseTeams(map<string, vector<Team>> team_lists) {
 
-    const string HEADER = "School Name, State/Prov, Entry Code,Pairing Seed (1-100), Speaker 1 First,Speaker 1 Middle,Speaker 1 Last,Speaker 1 Novice (Y/N),Speaker 1 Gender (F/M/O),Speaker 1 Email,Speaker 2 First,Speaker 2 Middle,Speaker 2 Last,Speaker 2 Novice (Y/N),Speaker 2 Gender (F/M/O),Speaker 2 Email,Speaker 3 First,Speaker 3 Middle,Speaker 3 Last,Speaker 3 Novice (Y/N),Speaker 3 Gender (F/M/O),Speaker 3 Email\n";
+    const string HEADER = "School Name,State/Prov,Entry Code,Pairing Seed (1-100),Speaker 1 First,Speaker 1 Middle,Speaker 1 Last,Speaker 1 Novice (Y/N),Speaker 1 Gender (F/M/O),Speaker 1 Email,Speaker 2 First,Speaker 2 Middle,Speaker 2 Last,Speaker 2 Novice (Y/N),Speaker 2 Gender (F/M/O),Speaker 2 Email,Speaker 3 First,Speaker 3 Middle,Speaker 3 Last,Speaker 3 Novice (Y/N),Speaker 3 Gender (F/M/O),Speaker 3 Email\n";
     map<string, string> output;
 
     for ( auto division : team_lists ) {
