@@ -103,7 +103,7 @@ map<string, vector<Team>> readFile(string file_name, int division_count) {
     file.open(file_name);
     if ( !file.is_open() ) {
 
-        cout << "ERROR: Invalid file " << file_name << endl;
+        cout << "[ERROR] Invalid file " << file_name << endl;
         exit(2);
 
     }
@@ -205,6 +205,11 @@ map<string, string> parseTeams(map<string, vector<Team>> team_lists) {
         string data = HEADER;
         for ( auto &team : division.second ) {
 
+            if(team.teamId != (team.id1 + "" + team.id2)) {
+                cout << "[ERROR] Ironman debater not handled properly, STOPPING. To fix, add N/A as the second speaker." << endl;
+                exit(1);
+            }
+
             data += team.school1;
             data += ",";
             data += ",";
@@ -229,6 +234,8 @@ map<string, string> parseTeams(map<string, vector<Team>> team_lists) {
             output[division.first] = data;
 
         }
+
+        cout << "[LOG]" << division.first << "succeeded, " << division.second.size() << " total teams." << endl;
 
     }
 
@@ -286,7 +293,7 @@ int main(int argc, char ** argv) {
     bool valid = input_file.find(".csv") != string::npos;
     if ( !valid ) {
 
-        cout << "ERROR: Not a csv file. Make sure you input a csv file." << endl;
+        cout << "[ERROR] Not a csv file. Make sure you input a csv file." << endl;
         return 1;
 
     }
@@ -301,12 +308,12 @@ int main(int argc, char ** argv) {
 
         } catch(const exception& e) {
 
-            cerr << "ERROR: Second argument must be an INTEGER NUMBER" << endl;
+            cerr << "[ERROR] Second argument must be an INTEGER NUMBER" << endl;
 
         }
         
     } else {
-        cout << "WARNING: You did not specify a division count. I strongly recommend you do." << endl;
+        cout << "[WARNING] You did not specify a division count. I strongly recommend you do." << endl;
     }
 
     // Presumably a valid file, let's read it maps division -> list of teams

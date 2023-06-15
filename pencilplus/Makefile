@@ -1,9 +1,8 @@
 # Config
 files = pencil.cpp
 cppversion = c++2b
-buildflags_dev = -Wall
-buildflags_prod = -O
-file := status.txt
+buildflags_dev = -Wall -g
+buildflags_prod = -O3
 
 all: dev run
 
