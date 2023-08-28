@@ -5,7 +5,7 @@ use warp::Filter;
 use tokio;
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn Error>> {            
+async fn main() -> Result<(), Box<dyn Error>> {
     let client = db::init().await?;
     println!("✅ Database connected successfully");
 
